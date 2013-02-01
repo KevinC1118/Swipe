@@ -11,7 +11,7 @@
   // return immediately if element doesn't exist
   if (!element) return null;
 
-  var _this = this;
+  // var _this = this;
 
   // retreive options
   this.options = options || {};
@@ -54,6 +54,7 @@ Swipe.prototype = {
 
   setup: function() {
 
+    var origVisibility, index, el;
     // get and measure amt of slides
     this.slides = this.element.children;
     this.length = this.slides.length;
@@ -73,14 +74,14 @@ Swipe.prototype = {
     if (!this.width) return null;
 
     // hide slider element but keep positioning during setup
-    var origVisibility = this.container.style.visibility;
+    origVisibility = this.container.style.visibility;
     this.container.style.visibility = 'hidden';
 
     // dynamic css
     this.element.style.width = Math.ceil(this.slides.length * this.width) + 'px';
-    var index = this.slides.length;
+    index = this.slides.length;
     while (index--) {
-      var el = this.slides[index];
+      el = this.slides[index];
       el.style.width = this.width + 'px';
       el.style.display = 'table-cell';
       el.style.verticalAlign = 'top';
