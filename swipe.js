@@ -19,6 +19,7 @@
   this.speed = this.options.speed || 300;
   this.callback = this.options.callback || function() {};
   this.delay = this.options.auto || 0;
+  this.goback = this.options.goback || false;
 
   // reference dom elements
   this.container = element;
@@ -130,7 +131,7 @@ Swipe.prototype = {
     clearTimeout(this.interval);
 
     if (this.index) this.slide(this.index-1, this.speed); // if not at first slide
-    // else this.slide(this.length - 1, this.speed); //if first slide return to end
+    else if(this.goback) this.slide(this.length - 1, this.speed); //if first slide return to end
 
   },
 
@@ -141,7 +142,7 @@ Swipe.prototype = {
     clearTimeout(this.interval);
 
     if (this.index < this.length - 1) this.slide(this.index+1, this.speed); // if not last slide
-    // else this.slide(0, this.speed); //if last slide return to start
+    else if(this.goback) this.slide(0, this.speed); //if last slide return to start
 
   },
 
